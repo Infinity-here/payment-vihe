@@ -58,7 +58,7 @@ const PaymentForm = () => {
         input.value = payuData[key];
         form.appendChild(input);
       });
-      // console.log("Submitting to PayU:", fields);
+      console.log("Submitting to PayU:", payuData);
       document.body.appendChild(form);
       form.submit();
     } catch (err) {

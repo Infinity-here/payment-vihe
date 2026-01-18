@@ -7,19 +7,15 @@ export const generatePayUHash = ({
   productinfo,
   firstname,
   email,
-  salt
+  salt,
 }) => {
-  const hashString = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|||||||||||${salt}`;
+  const hashString =
+    `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}` +
+    `||||||||||${salt}`;
 
-  return crypto
-    .createHash("sha512")
-    .update(hashString)
-    .digest("hex");
+  return crypto.createHash("sha512").update(hashString).digest("hex");
 };
 
 export const verifyPayUHash = (hashString) => {
-  return crypto
-    .createHash("sha512")
-    .update(hashString)
-    .digest("hex");
+  return crypto.createHash("sha512").update(hashString).digest("hex");
 };

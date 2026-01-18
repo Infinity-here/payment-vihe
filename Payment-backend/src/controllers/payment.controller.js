@@ -4,9 +4,12 @@ import crypto from "crypto";
 
 export const createPayment = async (req, res) => {
   try {
-    const { name, email, phone, amount } = req.body;
+    const { name, email, phone } = req.body;
 
     const txnid = crypto.randomBytes(16).toString("hex");
+    const firstname = name.trim().split(" ")[0];
+
+    const amount = Number(req.body.amount).toFixed(2);
     const productinfo = "Form Payment";
 
     // Save transaction
@@ -16,7 +19,15 @@ export const createPayment = async (req, res) => {
       email,
       phone,
       amount,
-      status: "PENDING"
+      status: "PENDING",
+    });
+    console.log("HASH INPUT", {
+      key: process.env.PAYU_MERCHANT_KEY,
+      txnid,
+      amount,
+      productinfo,
+      firstname,
+      email,
     });
 
     const hash = generatePayUHash({
@@ -24,24 +35,35 @@ export const createPayment = async (req, res) => {
       txnid,
       amount,
       productinfo,
-      firstname: name,
+      firstname,
       email,
-      salt: process.env.PAYU_SALT
+      salt: process.env.PAYU_SALT,
     });
 
+    console.log({
+      key: process.env.PAYU_MERCHANT_KEY,
+      txnid,
+      amount,
+      productinfo,
+      firstname,
+      email,
+      saltLength: process.env.PAYU_SALT?.length,
+      hashLength: hash.length,
+    });
     res.json({
       payuData: {
         key: process.env.PAYU_MERCHANT_KEY,
         txnid,
         amount,
         productinfo,
-        firstname: name,
+        firstname,
         email,
         phone,
         surl: `${process.env.BACKEND_URL}/api/payment/success`,
         furl: `${process.env.BACKEND_URL}/api/payment/failure`,
-        hash
-      }
+        service_provider: "payu_paisa",
+        hash,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: "Payment creation failed" });
