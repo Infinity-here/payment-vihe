@@ -44,11 +44,12 @@ const PaymentForm = () => {
 
       const res = await createPayment(formData);
       const payuData = res.data.payuData;
-
+      console.log("PayU Data:", payuData);
       // Create auto submit form for PayU
       const form = document.createElement("form");
       form.method = "POST";
       form.action = "https://secure.payu.in/_payment";
+      // form.action="https://test.payu.in/_payment";
 
       Object.keys(payuData).forEach((key) => {
         const input = document.createElement("input");
@@ -57,7 +58,7 @@ const PaymentForm = () => {
         input.value = payuData[key];
         form.appendChild(input);
       });
-
+      // console.log("Submitting to PayU:", fields);
       document.body.appendChild(form);
       form.submit();
     } catch (err) {
