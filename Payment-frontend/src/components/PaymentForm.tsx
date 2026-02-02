@@ -69,61 +69,170 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="payment-card">
-      <h1 className="title">Payment</h1>
+    // <main>
+    <div className="payment-container">
+      <div className="payment-header">
+        <h1 className="payment-title">Sacred Offering</h1>
+        <p className="payment-subtitle">
+          Complete your contribution with devotion
+        </p>
+        <div className="divider">
+          <span>🪷</span>
+        </div>
+      </div>
 
-      {error && <p className="error">{error}</p>}
+      {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label>Name *</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter your name"
-          />
+        {/* Name */}
+        <div className="form-group">
+          <label>Full Name *</label>
+          <div className="input-wrapper">
+            {/* <i className="fas fa-user input-icon"></i> */}
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your full name"
+            />
+          </div>
         </div>
 
-        <div className="input-group">
-          <label>Email *</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-          />
+        {/* Email */}
+        <div className="form-group">
+          <label>Email Address *</label>
+          <div className="input-wrapper">
+            {/* <i className="fas fa-envelope input-icon"></i> */}
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="your.email@example.com"
+            />
+          </div>
         </div>
 
-        <div className="input-group">
+        {/* Phone */}
+        <div className="form-group">
           <label>Contact Number *</label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="Enter contact number"
-          />
+          <div className="input-wrapper">
+            {/* <i className="fas fa-phone input-icon"></i> */}
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="+91 98765 **210"
+            />
+          </div>
         </div>
 
-        <div className="input-group">
-          <label>Amount *</label>
-          <input
-            type="number"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            placeholder="0"
-          />
+        {/* Amount */}
+        <div className="form-group amount-group">
+          <label>Contribution Amount *</label>
+          <div className="amount-wrapper">
+            {/* <i className="fas fa-rupee-sign input-icon"></i> */}
+            <input
+              type="number"
+              name="amount"
+              min="1"
+              value={formData.amount}
+              onChange={handleChange}
+              placeholder="0"
+            />
+          </div>
+          <div className="help-text">
+            <i className="fas fa-heart"></i>
+            <span>
+              Your contribution supports spiritual education and ancient wisdom
+            </span>
+          </div>
         </div>
 
+        {/* Submit */}
         <button className="submit-btn" disabled={loading}>
-          {loading ? "Processing..." : "CHECK DETAILS"}
+          {loading ? (
+            <>
+              <i className="fas fa-spinner fa-spin"></i> Processing...
+            </>
+          ) : (
+            <>
+              Proceed to Secure Payment <i className="fas fa-arrow-right"></i>
+            </>
+          )}
         </button>
+
+        {/* Security */}
+        <div className="security-footer">
+          <div className="security-badge">
+            <i className="fas fa-lock"></i>
+            <span>256-bit SSL Encrypted</span>
+          </div>
+          <div className="security-badge">
+            <i className="fas fa-check-circle"></i>
+            <span>PCI DSS Compliant</span>
+          </div>
+        </div>
       </form>
     </div>
+  // </main>
+  //   <div className="payment-card">
+  //     <h1 className="title">Payment</h1>
+
+  //     {error && <p className="error">{error}</p>}
+
+  //     <form onSubmit={handleSubmit}>
+  //       <div className="input-group">
+  //         <label>Name *</label>
+  //         <input
+  //           type="text"
+  //           name="name"
+  //           value={formData.name}
+  //           onChange={handleChange}
+  //           placeholder="Enter your name"
+  //         />
+  //       </div>
+
+  //       <div className="input-group">
+  //         <label>Email *</label>
+  //         <input
+  //           type="email"
+  //           name="email"
+  //           value={formData.email}
+  //           onChange={handleChange}
+  //           placeholder="Enter your email"
+  //         />
+  //       </div>
+
+  //       <div className="input-group">
+  //         <label>Contact Number *</label>
+  //         <input
+  //           type="tel"
+  //           name="phone"
+  //           value={formData.phone}
+  //           onChange={handleChange}
+  //           placeholder="Enter contact number"
+  //         />
+  //       </div>
+
+  //       <div className="input-group">
+  //         <label>Amount *</label>
+  //         <input
+  //           type="number"
+  //           name="amount"
+  //           value={formData.amount}
+  //           onChange={handleChange}
+  //           placeholder="0"
+  //         />
+  //       </div>
+
+  //       <button className="submit-btn" disabled={loading}>
+  //         {loading ? "Processing..." : "CHECK DETAILS"}
+  //       </button>
+  //     </form>
+  //   </div>
   );
 };
 
