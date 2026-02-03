@@ -11,7 +11,7 @@ export const generatePayUHash = ({
 }) => {
   const hashString =
     `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}` +
-    `||||||||||${salt}`;
+    `|||||||||||${salt}`;
 
   return crypto.createHash("sha512").update(hashString).digest("hex");
 };

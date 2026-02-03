@@ -128,23 +128,6 @@ main {
   position: relative;
 }
 
-.payment-container::before {
-  content: "";
-  height: 6px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: linear-gradient(
-    90deg,
-    var(--sacred-saffron),
-    var(--temple-gold),
-    var(--peacock-blue),
-    var(--temple-gold),
-    var(--sacred-saffron)
-  );
-}
-
 /* ================= TITLE ================= */
 .payment-header {
   text-align: center;

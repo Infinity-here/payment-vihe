@@ -48,8 +48,8 @@ const PaymentForm = () => {
       // Create auto submit form for PayU
       const form = document.createElement("form");
       form.method = "POST";
-      form.action = "https://secure.payu.in/_payment";
-      // form.action="https://test.payu.in/_payment";
+      // form.action = "https://secure.payu.in/_payment";
+      form.action="https://test.payu.in/_payment";
 
       Object.keys(payuData).forEach((key) => {
         const input = document.createElement("input");
@@ -163,76 +163,9 @@ const PaymentForm = () => {
             </>
           )}
         </button>
-
-        {/* Security */}
-        <div className="security-footer">
-          <div className="security-badge">
-            <i className="fas fa-lock"></i>
-            <span>256-bit SSL Encrypted</span>
-          </div>
-          <div className="security-badge">
-            <i className="fas fa-check-circle"></i>
-            <span>PCI DSS Compliant</span>
-          </div>
-        </div>
       </form>
     </div>
-  // </main>
-  //   <div className="payment-card">
-  //     <h1 className="title">Payment</h1>
 
-  //     {error && <p className="error">{error}</p>}
-
-  //     <form onSubmit={handleSubmit}>
-  //       <div className="input-group">
-  //         <label>Name *</label>
-  //         <input
-  //           type="text"
-  //           name="name"
-  //           value={formData.name}
-  //           onChange={handleChange}
-  //           placeholder="Enter your name"
-  //         />
-  //       </div>
-
-  //       <div className="input-group">
-  //         <label>Email *</label>
-  //         <input
-  //           type="email"
-  //           name="email"
-  //           value={formData.email}
-  //           onChange={handleChange}
-  //           placeholder="Enter your email"
-  //         />
-  //       </div>
-
-  //       <div className="input-group">
-  //         <label>Contact Number *</label>
-  //         <input
-  //           type="tel"
-  //           name="phone"
-  //           value={formData.phone}
-  //           onChange={handleChange}
-  //           placeholder="Enter contact number"
-  //         />
-  //       </div>
-
-  //       <div className="input-group">
-  //         <label>Amount *</label>
-  //         <input
-  //           type="number"
-  //           name="amount"
-  //           value={formData.amount}
-  //           onChange={handleChange}
-  //           placeholder="0"
-  //         />
-  //       </div>
-
-  //       <button className="submit-btn" disabled={loading}>
-  //         {loading ? "Processing..." : "CHECK DETAILS"}
-  //       </button>
-  //     </form>
-  //   </div>
   );
 };
 
