@@ -21,14 +21,7 @@ export const createPayment = async (req, res) => {
       amount,
       status: "PENDING",
     });
-    console.log("HASH INPUT", {
-      key: process.env.PAYU_MERCHANT_KEY,
-      txnid,
-      amount,
-      productinfo,
-      firstname,
-      email,
-    });
+   
 
     const hash = generatePayUHash({
       key: process.env.PAYU_MERCHANT_KEY,
