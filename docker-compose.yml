@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0-alpine
+    container_name: payment-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - payment-network
+    restart: unless-stopped
+
+  payment-backend:
+    build:
+      context: ./Payment-backend
+      dockerfile: Dockerfile
+    container_name: payment-backend
+    ports:
+      - "80:80"
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://root:password@mongodb:27017/payment?authSource=admin
+      PORT: 3000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./Payment-backend/src:/app/src
+      - ./Payment-backend/logs:/app/logs
+    networks:
+      - payment-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  mongodb_data:
+    driver: local
+  mongodb_config:
+    driver: local
+
+networks:
+  payment-network:
+    driver: bridge
