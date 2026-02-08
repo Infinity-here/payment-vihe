@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/paymentform.tsx","./src/pages/payment.tsx","./src/pages/paymentfaliure.tsx","./src/pages/paymentsuccess.tsx","./src/services/api.tsx","./vite.config.ts"],"version":"5.9.3"}
