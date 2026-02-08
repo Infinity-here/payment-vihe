@@ -1,4 +1,4 @@
-import Payment from "../models/Payment.js";
+import Payment from "../models/payment.js";
 import { generatePayUHash, verifyPayUHash } from "../utils/payuHash.js";
 import crypto from "crypto";
 
