@@ -16,7 +16,7 @@ services:
       - payment-network
     restart: unless-stopped
 
-  payment-backend:
+ payment-backend:
     build:
       context: ./Payment-backend
       dockerfile: Dockerfile
@@ -26,8 +26,8 @@ services:
       - "5000:5000"
     environment:
       NODE_ENV: production
-      MONGODB_URI: mongodb://root:password@mongodb:27017/payment?authSource=admin
-      PORT: 3000
+    env_file:
+      - ./Payment-backend/.env
     depends_on:
       - mongodb
     volumes:
