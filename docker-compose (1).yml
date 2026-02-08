@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mongodb:
-    image: mongo:7.0-alpine
+    image: mongo:7.0
     container_name: payment-mongodb
     ports:
       - "27017:27017"
@@ -23,7 +23,7 @@ services:
     container_name: payment-backend
     ports:
       - "80:80"
-      - "3000:3000"
+      - "5000:5000"
     environment:
       NODE_ENV: production
       MONGODB_URI: mongodb://root:password@mongodb:27017/payment?authSource=admin
